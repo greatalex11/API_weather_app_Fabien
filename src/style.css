@@ -1,0 +1,8 @@
+:root {
+  font-size: 100%;
+  --main-color: #fffff;
+}
+
+#appli_meteo {
+  background-image: url(/assets/marseille/Marseille.png);
+}
