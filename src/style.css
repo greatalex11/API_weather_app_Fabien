@@ -1,11 +1,61 @@
 :root {
   font-size: 100%;
-  --main-color: #fffff;
+  --main-color: #ffff;
 }
 
 #appli_meteo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-image: url(/assets/marseille/ensoleillement\ 1.svg);
   width: 23.75rem;
   height: 52.75rem;
   border-radius: 2.1875rem;
+}
+
+#affichage_sup {
+  background: url(/assets/marseille/Marseille.png);
+  width: 21.9375rem;
+  height: 17.9375rem;
+}
+
+#affichage_median {
+  background: url(/assets/marseille/median.png);
+  width: 20.5rem;
+  height: 3.3125rem;
+}
+
+#affichage_inf {
+  background: url(/assets/marseille/inferieur.png);
+  width: 21.875rem;
+  height: 9.875rem;
+}
+
+#ville {
+  font-family: poppins;
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--main-color);
+  margin-bottom: 0;
+}
+#pays {
+  font-family: Montserrat;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: var(--main-color);
+}
+#dateJJHH {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: var(--main-color);
 }
