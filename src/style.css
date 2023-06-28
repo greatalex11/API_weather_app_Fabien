@@ -26,15 +26,33 @@
 }
 
 #affichage_median {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-repeat: no-repeat;
+
   background: url(/assets/marseille/median.png);
-  width: 20.5rem;
-  height: 3.3125rem;
+  width: 22.5rem;
+  height: 73px;
+  margin: 25px 25px;
+
+  align-items: center;
 }
 
 #affichage_inf {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
   background: url(/assets/marseille/inferieur.png);
   width: 21.875rem;
   height: 9.875rem;
+
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-family: Poppins;
+  line-height: 20px;
 }
 
 #ville {
@@ -83,11 +101,13 @@
 .search {
   max-width: 175px;
   align-items: end;
-  margin: 8px 25px 8px 6px;
+  margin: 8px 15px 4px 20px;
 }
 #maison {
   margin-top: 9px;
-  margin-left: 22px;
+
+  margin-left: 4px;
+  margin-right: 75px;
   vertical-align: middle;
 }
 
@@ -97,8 +117,18 @@
 
 #gd_MeteoIcone > span {
   color: #fff;
-  font-size: 96px;
+  font-size: 6rem;
   font-family: Montserrat;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 1.25rem;
+}
+
+#temp_Min,
+#temp_Max {
+  color: #fff;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: Poppins;
+  line-height: 1.25rem;
+  text-transform: capitalize;
 }
