@@ -2,13 +2,6 @@
   font-size: 100%;
   --main-color: #ffff;
 }
-icon_Meteo {
-  --icon_pluie: url(/assets/meteo/gd_clairci.png);
-  --icon-neige-background-image: url(/assets/meteo/gd_neige.png);
-  --icon-nuageux-background-image: url(/assets/meteo/gd_nuageux.png);
-  --icon-orage-background-image: url(/assets/meteo/gd_orage.png);
-  --icon-pluie-background-image: url(/assets/meteo/gd_pluie.png);
-}
 
 #appli_meteo {
   display: flex;
@@ -22,6 +15,7 @@ icon_Meteo {
 
 #recherches {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
 }
@@ -87,8 +81,9 @@ icon_Meteo {
   height: 131px;
 }
 .search {
+  max-width: 175px;
   align-items: end;
-  margin: 8px 25px 8px 60px;
+  margin: 8px 25px 8px 6px;
 }
 #maison {
   margin-top: 9px;
@@ -96,13 +91,12 @@ icon_Meteo {
   vertical-align: middle;
 }
 
-#gd_Meteo_Icone {
+#gd_MeteoIcone {
   margin: 48px auto;
 }
 
-#gd_Meteo_Icone > span {
+#gd_MeteoIcone > span {
   color: #fff;
-
   font-size: 96px;
   font-family: Montserrat;
   font-weight: 500;

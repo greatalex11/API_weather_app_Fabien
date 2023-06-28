@@ -1,7 +1,9 @@
-const meteoMain = document.getElementById(gd_Meteo_Icone);
-console.log(meteoMain);
+const divIcone = document.getElementById("gd_MeteoIcone");
+
+console.log(divIcone);
+
 const gdIcone = document.createElement("img");
 
-gdIcone.src = "/assets/meteo/gd_soleil.png/";
+gdIcone.src = "/assets/meteo/gd_soleil.png";
 
-meteoMain.appendChild(gdIcone);
+divIcone.appendChild(gdIcone);
