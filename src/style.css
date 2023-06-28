@@ -2,17 +2,29 @@
   font-size: 100%;
   --main-color: #ffff;
 }
+icon_Meteo {
+  --icon_pluie: url(/assets/meteo/gd_clairci.png);
+  --icon-neige-background-image: url(/assets/meteo/gd_neige.png);
+  --icon-nuageux-background-image: url(/assets/meteo/gd_nuageux.png);
+  --icon-orage-background-image: url(/assets/meteo/gd_orage.png);
+  --icon-pluie-background-image: url(/assets/meteo/gd_pluie.png);
+}
 
 #appli_meteo {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-image: url(/assets/marseille/ensoleillement\ 1.svg);
-  width: 23.75rem;
+  width: 24.375rem;
   height: 52.75rem;
   border-radius: 2.1875rem;
 }
 
+#recherches {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 #affichage_sup {
   background: url(/assets/marseille/Marseille.png);
   width: 21.9375rem;
@@ -40,16 +52,23 @@
   text-transform: capitalize;
   color: var(--main-color);
   margin-bottom: 0;
+  margin-top: 32px;
+  margin-bottom: 8px;
 }
 #pays {
   font-family: Montserrat;
+  text-transform: uppercase;
   font-size: 24px;
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: center;
   color: var(--main-color);
+
+  margin-top: 18px;
+  margin-bottom: 8px;
 }
+
 #dateJJHH {
   font-family: Montserrat;
   font-size: 16px;
@@ -58,9 +77,34 @@
   letter-spacing: 0em;
   text-align: center;
   color: var(--main-color);
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
-/*
+.meteo_icone {
+  background-image: var(--icon_pluie);
+  width: 131px;
+  height: 131px;
+}
+.search {
+  align-items: end;
+  margin: 8px 25px 8px 60px;
+}
 #maison {
-  b
-}*/
+  margin-top: 9px;
+  margin-left: 22px;
+  vertical-align: middle;
+}
+
+#gd_Meteo_Icone {
+  margin: 48px auto;
+}
+
+#gd_Meteo_Icone > span {
+  color: #fff;
+
+  font-size: 96px;
+  font-family: Montserrat;
+  font-weight: 500;
+  line-height: 20px;
+}
