@@ -1,9 +1,11 @@
-const divIcone = document.getElementById("gd_MeteoIcone");
+const firstC = document.getElementById("gdMeteoIcone").firstChild;
 
-console.log(divIcone);
+/**
+ *
+ *       INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
+ *
+ */
 
 const gdIcone = document.createElement("img");
-
 gdIcone.src = "/assets/meteo/gd_soleil.png";
-
-divIcone.appendChild(gdIcone);
+firstC.before(gdIcone); // insertion gde img meteo avant span //
