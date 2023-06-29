@@ -3,7 +3,7 @@
   --main-color: #ffff;
 }
 
-#appli_meteo {
+#appliMeteo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,39 +19,46 @@
   flex-direction: row;
   align-items: center;
 }
-#affichage_sup {
+#affichageSup {
   background: url(/assets/marseille/Marseille.png);
   width: 21.9375rem;
   height: 17.9375rem;
 }
 
-#affichage_median {
+#affichageMedian {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background: url(/assets/marseille/minmax.png);
+  background-size: 100%;
   background-repeat: no-repeat;
-
-  background: url(/assets/marseille/median.png);
-  width: 22.5rem;
-  height: 73px;
-  margin: 25px 25px;
+  /* background-size: contain; */
+  width: 351px;
+  height: auto;
 
   align-items: center;
 }
 
-#affichage_inf {
+#affichageInf {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
+  align-items: center;
+  box-sizing: border-box;
   background: url(/assets/marseille/inferieur.png);
-  width: 21.875rem;
-  height: 9.875rem;
+  background-repeat: no-repeat;
+  /* background-size: contain; */
+  width: 350px;
+  height: 248px;
+  text-align: center;
+  vertical-align: middle;
 
   color: #fff;
-  text-align: center;
+
   font-size: 24px;
   font-family: Poppins;
+  font-style: normal;
+  font-weight: 400;
   line-height: 20px;
 }
 
@@ -112,7 +119,8 @@
 }
 
 #gd_MeteoIcone {
-  margin: 48px auto;
+  margin: 18px auto;
+  text-align: center;
 }
 
 #gd_MeteoIcone > span {
@@ -131,4 +139,25 @@
   font-family: Poppins;
   line-height: 1.25rem;
   text-transform: capitalize;
+}
+#wikiAdisor {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-image: url(/assets/marseille/fondTripWiki.png);
+  background-repeat: no-repeat;
+  width: 351px;
+  height: 422px;
+  margin: 15px;
+}
+
+#random::before {
+  background-image: url(/assets/meteo/chevron_gauche.png);
+  width: 121px;
+  height: 34px;
+}
+#random::after {
+  background-image: url(/assets/meteo/chevrons-droit.png);
+  width: 121px;
+  height: 34px;
 }
