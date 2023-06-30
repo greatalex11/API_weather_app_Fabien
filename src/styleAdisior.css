@@ -1,0 +1,16 @@
+:root {
+  font-size: 100%;
+  --main-color: #ffff;
+}
+
+#containerAdvisor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(/assets/tripadvisor-mobile.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 380px;
+  height: 880px;
+  border-radius: 35px;
+}
