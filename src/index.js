@@ -11,26 +11,35 @@ gdIcone.src = "/assets/meteo/gd_soleil.png";
 firstC.before(gdIcone); // insertion gde img meteo avant span //
 
 /**
- *                FETCH API GEOCODING
+ *                RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
  *
  *
  **/
 
 const searchVille = document.querySelector("input");
-const validateVille = document.querySelector("btn-icon-content");
-console.log(validateVille);
-
-/*validateVille.addEventListener("click", recupValue);*/
+const validateVille = document.querySelector("button");
+console.log(searchVille);
+validateVille.addEventListener("click", recupValue);
 
 function recupValue() {
-  console.log("une valeur");
+  let ville = searchVille.value; //recup valeur ville saisie si click bouttp,
+  if (ville == "") {
+    ville = "Besancon"; //valeur par défaut : besançon
+    searchVille.placeholder = ville;
+  }
 }
+/**
+ *                FETCH API GEOCODING
+ *
+ *
+ **/
 
 /**
  *                FETCH API METEO
  *
  *
  **/
+
 let response;
 
 fetch(
