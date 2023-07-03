@@ -1,30 +1,29 @@
 function getData() {
   getVille();
   getLatitudeLongitude(ville);
-  /*getMeteo();*/
+  getMeteo();
 }
-
 const validateVille = document.querySelector("button");
-validateVille.addEventListener("click", getData());
+const searchVille = document.querySelector("input");
+
+validateVille.addEventListener("click", getData);
+
+/**
+ *
+ *                          RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
+ *
+ **/
 
 function getVille() {
-  const searchVille = document.querySelector("input");
-  console.log(searchVille);
   let ville = searchVille.value; //recup valeur ville saisie si click bouttp*/
-  console.log(searchVille.value);
 
-  if (ville == "") {
+  if (!ville) {
     ville = "Besancon"; //valeur par défaut : besançon
     searchVille.placeholder = ville;
   }
 
   let villeLatLon = getLatitudeLongitude(ville);
 }
-/**
- *
- *            RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
- *
- **/
 
 /**
  *                                   FETCH API GEOCODING
