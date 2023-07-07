@@ -85,13 +85,29 @@ async function getLatitudeLongitude(ville) {
 
       function meteo(latlon) {
         fetch(
-          `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389`
+          `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389&units=metric`
         )
           .then((response) => response.json()) // convert to json//
-          .then((json) => console.log(json)); //print data to console//
-        /*.catch((err) => console.log("Request Failed", err))*/
+          /*.then((json) => console.log(json)); //print data to console// */
+          .then((response) => {
+            console.log(response);
+            let city = response["city"]["name"];
+            let country = response["city"]["country"];
+            let dateJ = response["list"][0]["dt_txt"];
+            let tempJ = response["list"][0]["main"]["temp"];
+            let weatherJ = response["list"][0]["weather"][0]["description"];
+            console.log(city, country, dateJ, tempJ, weatherJ);
 
-        //return result;//
+            /* EXPLOIT TABLEAU IDEM
+            let tableauWeather = response["list"];
+            for (let i = 0; i < tableauWeather.length; i++) {
+              console.log(tableauWeather[i]);
+            }
+            console.log(tableauWeather[0]);
+            console.log(tableauWeather[0].dt_txt);
+            console.log(tableauWeather[0]["weather"][0]["description"]);
+            */
+          });
       }
     });
 }
