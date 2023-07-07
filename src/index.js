@@ -98,6 +98,9 @@ async function getLatitudeLongitude(ville) {
             let weatherJ = response["list"][0]["weather"][0]["description"];
             console.log(city, country, dateJ, tempJ, weatherJ);
 
+            let cityLabel = document.querySelector("#ville");
+            cityLabel.innerHTML = city;
+
             /* EXPLOIT TABLEAU IDEM
             let tableauWeather = response["list"];
             for (let i = 0; i < tableauWeather.length; i++) {
@@ -111,6 +114,36 @@ async function getLatitudeLongitude(ville) {
       }
     });
 }
+/**
+ *                                 TABLE ASSOCIATION ICONE_URL
+ *
+ *
+ **/
+let description = [
+  "clear sky",
+  "few clouds",
+  "scattered clouds",
+  "broken clouds",
+  "shower rain",
+  "rain",
+  "thunderstorm",
+  "snow",
+  "mist",
+];
+let urlIcon = [
+  "./assets/meteo/gd_soleil",
+  "./assets/meteo/gd_clairci",
+  "./assets/meteo/gd_nuageux",
+  "./assets/meteo/gd_nuageux",
+  "./assets/meteo/gd_nuageux",
+  "./assets/meteo/gd_pluie",
+  "./assets/meteo/gd_nuageux",
+  "./assets/meteo/gd_neige",
+  "./assets/meteo/gd_neige",
+];
+let assoUrlIcon = new Array(description, urlIcon);
+
+console.table(assoUrlIcon);
 
 /**                                    SUITE ARBRE A FONCTION - CF INDEX3.JS
  *                                                FETCH API METEO
