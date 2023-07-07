@@ -101,6 +101,12 @@ async function getLatitudeLongitude(ville) {
             let cityLabel = document.querySelector("#ville");
             cityLabel.innerHTML = city;
 
+            let affichageTemperature = document.querySelector(
+              "#gdMeteoIcone > span"
+            );
+            affichageTemperature.innerHTML = tempJ;
+
+            if(weatherJ==)
             /* EXPLOIT TABLEAU IDEM
             let tableauWeather = response["list"];
             for (let i = 0; i < tableauWeather.length; i++) {
@@ -144,6 +150,14 @@ let urlIcon = [
 let assoUrlIcon = new Array(description, urlIcon);
 
 console.table(assoUrlIcon);
+
+function extratIcon (){
+  for (let j=0 ; j < assoUrlIcon.length ; j++ ){
+    
+  }
+
+
+}
 
 /**                                    SUITE ARBRE A FONCTION - CF INDEX3.JS
  *                                                FETCH API METEO
