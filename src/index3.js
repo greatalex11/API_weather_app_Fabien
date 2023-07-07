@@ -1,12 +1,6 @@
-/**                             CODE FONCTIONNEL - ARBRE A FONCTION TRONQUE - PORTEE LATLON HORS SCOP
- *                                   FONCTION METEO INTEGREE DIRECTEMENT EN SORTIE DE GEOCODE
- *
- *
- **/
-
 /**
  *
- *                                        INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
+ *                     INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
  *
  **/
 
@@ -17,15 +11,15 @@ firstC.before(gdIcone); // insertion gde img meteo avant span //
 
 /**
  *
- *                                "L'ARBRE A FONCTIONS" - STRUCTURE PRINCIPALE PRG - PAGE MAIN
+ *                      "L'ARBRE A FONCTIONS" - STRUCTURE PRINCIPALE PRG - PAGE MAIN
  *
  **/
 
 function getData() {
   let ville = getVille();
-  let latlon = getLatitudeLongitude(ville);
-
-  /*let result = getMeteo(latlon);*/
+  var latlon = getLatitudeLongitude(ville);
+  console.log(latlon.latitude);
+  let result = getMeteo(latlon);
 }
 const validateVille = document.querySelector("button");
 const searchVille = document.querySelector("input");
@@ -34,7 +28,7 @@ validateVille.addEventListener("click", getData);
 
 /**
  *
- *                                      RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
+ *                       RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
  *
  **/
 
@@ -49,13 +43,13 @@ function getVille(ville) {
 }
 
 /**
- *                                                      FETCH API GEOCODING
+ *                                   FETCH API GEOCODING
  *
  *
  **/
 
 /*{country code}*/
-//creation objet latlon, easy to pass values
+//creation objet latlon, easy to pass values//
 
 async function getLatitudeLongitude(ville) {
   await fetch(
@@ -73,36 +67,15 @@ async function getLatitudeLongitude(ville) {
         latitude: latiVille,
         longitude: longiVille,
       };
-      console.log(latlon);
-
-      /**
-       *                                                   FETCH API METEO
-       *
-       *
-       **/
-
-      meteo(latlon);
-
-      function meteo(latlon) {
-        fetch(
-          `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389`
-        )
-          .then((response) => response.json()) // convert to json//
-          .then((json) => console.log(json)); //print data to console//
-        /*.catch((err) => console.log("Request Failed", err))*/
-
-        //return result;//
-      }
     });
+  console.log(latlon);
+  return latlon;
 }
-
-/**                                    SUITE ARBRE A FONCTION - CF INDEX3.JS
- *                                                FETCH API METEO
+/**
+ *                                      FETCH API METEO
  *
  *
  **/
-
-/*
 
 async function getMeteo(latlon) {
   //setTimeout(alert, 1000, "Message d'alerte après 2 secondes");//
@@ -114,9 +87,9 @@ async function getMeteo(latlon) {
   await fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      for (let i = 0; i < response.length; i++) {
-        result = response[i];
-      }
+      i = 0;
+      /*for (let i = 0; i < response.length; i++) {*/
+      result = response[i];
     });
   return result;
-  }*/
+}
