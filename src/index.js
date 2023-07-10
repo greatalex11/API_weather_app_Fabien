@@ -104,9 +104,9 @@ async function getLatitudeLongitude(ville) {
             let affichageTemperature = document.querySelector(
               "#gdMeteoIcone > span"
             );
-            affichageTemperature.innerHTML = tempJ;
+            affichageTemperature.innerHTML = tempJ.toFixed(1) + "°";
 
-            if(weatherJ==)
+            /*if(weatherJ==)*/
             /* EXPLOIT TABLEAU IDEM
             let tableauWeather = response["list"];
             for (let i = 0; i < tableauWeather.length; i++) {
@@ -151,12 +151,8 @@ let assoUrlIcon = new Array(description, urlIcon);
 
 console.table(assoUrlIcon);
 
-function extratIcon (){
-  for (let j=0 ; j < assoUrlIcon.length ; j++ ){
-    
-  }
-
-
+function extratIcon() {
+  for (let j = 0; j < assoUrlIcon.length; j++) {}
 }
 
 /**                                    SUITE ARBRE A FONCTION - CF INDEX3.JS

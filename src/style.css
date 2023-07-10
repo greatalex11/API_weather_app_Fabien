@@ -134,7 +134,7 @@
 
 #gdMeteoIcone > span {
   color: #fff;
-  font-size: 6rem;
+  font-size: max(5.8rem);
   font-family: Montserrat;
   font-weight: 500;
   line-height: 1.25rem;
