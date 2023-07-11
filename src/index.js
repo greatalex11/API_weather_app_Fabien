@@ -13,10 +13,11 @@ function getMeteoObjByJson(myarray) {
     if (myarray[i].dt_txt.includes("12:00:00")) {
       let date_txt = myarray[i].dt_txt;
       let description = myarray[i].weather[0].description;
-      let url4j;
+      let temperature = myarray[i].main.temp;
       let returndata = {
         date: date_txt,
         description: description,
+        temperature: temperature,
       };
 
       data.push(returndata); //l'un derrrière l'autre//
@@ -147,19 +148,23 @@ async function getLatitudeLongitude(ville) {
               "shower rain",
               "rain",
               "thunderstorm",
+              "light rain",
+              "overcast cloud",
               "snow",
               "mist",
             ];
             let urlIcon = [
-              "./assets/meteo/gd_soleil",
-              "./assets/meteo/gd_clairci",
-              "./assets/meteo/gd_nuageux",
-              "./assets/meteo/gd_nuageux",
-              "./assets/meteo/gd_nuageux",
-              "./assets/meteo/gd_pluie",
-              "./assets/meteo/gd_nuageux",
-              "./assets/meteo/gd_neige",
-              "./assets/meteo/gd_neige",
+              "../assets/meteo/gd_soleil.png",
+              "../assets/meteo/gd_clairci.png",
+              "../assets/meteo/gd_nuageux.png",
+              "../assets/meteo/gd_nuageux.png",
+              "../assets/meteo/gd_nuageux.png",
+              "../assets/meteo/gd_pluie.png",
+              "../assets/meteo/gd_nuageux.png",
+              "../assets/meteo/gd_pluie.png",
+              "../assets/meteo/gd_nuageux.png",
+              "../assets/meteo/gd_neige.png",
+              "../assets/meteo/gd_neige.png",
             ];
 
             let assoUrlIcon = new Array(description, urlIcon);
@@ -167,6 +172,9 @@ async function getLatitudeLongitude(ville) {
 
             console.log(assoUrlIcon[0][0]);
             console.log(assoUrlIcon[1][0]); // ok! mais pas en fonction de la ville mais tu array//
+
+            /*let mesUrl4j = extractUrl4j(assoUrlIcon);
+            console.log(mesUrl4j);*/
 
             let findIcone = assoUrlIcon[0].findIndex(
               (element) => element === weatherJ
@@ -194,6 +202,30 @@ async function getLatitudeLongitude(ville) {
 
             let monObjet = getMeteoObjByJson(response["list"]);
             console.log(monObjet);
+
+            for (let l = 0; l < monObjet.length; l++) {
+              let findIcone = assoUrlIcon[0].findIndex(
+                (element) => element === monObjet[l].description
+              );
+              console.log(findIcone);
+              let urlIcone = assoUrlIcon[1][findIcone];
+              let datejouractuel = new Date(monObjet[l].date);
+              let joursemaine = new Array();
+              joursemaine = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
+              console.log(joursemaine);
+              console.log(datejouractuel.getDay());
+              let div = (document.getElementById("jour" + (l + 1)).innerHTML =
+                `<p>` +
+                joursemaine[datejouractuel.getDay()] +
+                `</p> <p><img width=30 src='` +
+                urlIcone +
+                `'></p> <p>` +
+                monObjet[l].temperature +
+                `</p>`);
+              if (l == 3) {
+                break;
+              }
+            }
           });
       }
     });
