@@ -1,12 +1,10 @@
 /**
  *
- *                                                 EXTRACTION DES DATA WEATHER
+ *                                       EXTRACTION DES DATA WEATHER
  *
  **/
 
 function getMeteoObjByJson(myarray) {
-  console.log(myarray);
-
   let data = new Array();
 
   for (let i = 0; i < 40; i++) {
@@ -19,22 +17,22 @@ function getMeteoObjByJson(myarray) {
         description: description,
         temperature: temperature,
       };
-
       data.push(returndata); //l'un derrrière l'autre//
+      console.log(returndata);
     }
   }
   return data;
 }
 
-/**                             CODE FONCTIONNEL - ARBRE A FONCTION TRONQUE - PORTEE LATLON HORS SCOP
- *                                   FONCTION METEO INTEGREE DIRECTEMENT EN SORTIE DE GEOCODE
+/**                        CODE FONCTIONNEL - ARBRE A FONCTION TRONQUE - PORTEE LATLON HORS SCOP
+ *                                FONCTION METEO INTEGREE DIRECTEMENT EN SORTIE DE GEOCODE
  *
  *
  **/
 
 /**
  *
- *                                        INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
+ *                                    INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
  *
  **/
 
@@ -45,15 +43,13 @@ firstC.before(gdIcone); // insertion gde img meteo avant span //
 
 /**
  *
- *                                "L'ARBRE A FONCTIONS" - STRUCTURE PRINCIPALE PRG - PAGE MAIN
+ *                          "L'ARBRE A FONCTIONS" - STRUCTURE PRINCIPALE PRG - PAGE MAIN
  *
  **/
 
 function getData() {
   let ville = getVille();
   let latlon = getLatitudeLongitude(ville);
-
-  /*let result = getMeteo(latlon);*/
 }
 const validateVille = document.querySelector("button");
 const searchVille = document.querySelector("input");
@@ -62,7 +58,7 @@ validateVille.addEventListener("click", getData);
 
 /**
  *
- *                                      RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
+ *                                 RECUP VALEUR CHAMP POUR RECHERCHE API GEOCODING
  *
  **/
 
@@ -77,7 +73,7 @@ function getVille(ville) {
 }
 
 /**
- *                                                      FETCH API GEOCODING
+ *                                             FETCH API GEOCODING
  *
  *
  **/
@@ -104,7 +100,7 @@ async function getLatitudeLongitude(ville) {
       console.log(latlon);
 
       /**
-       *                                                   FETCH API METEO
+       *                                       FETCH API METEO
        *
        *
        **/
@@ -116,7 +112,7 @@ async function getLatitudeLongitude(ville) {
           `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389&units=metric`
         )
           .then((response) => response.json()) // convert to json//
-          /*.then((json) => console.log(json)); //print data to console// */
+          /*.then((json) => console.log(json));                                               //print data to console// */
           .then((response) => {
             console.log(response);
             let city = response["city"]["name"];
@@ -149,7 +145,7 @@ async function getLatitudeLongitude(ville) {
               "rain",
               "thunderstorm",
               "light rain",
-              "overcast cloud",
+              "overcast clouds",
               "snow",
               "mist",
             ];
@@ -173,9 +169,6 @@ async function getLatitudeLongitude(ville) {
             console.log(assoUrlIcon[0][0]);
             console.log(assoUrlIcon[1][0]); // ok! mais pas en fonction de la ville mais tu array//
 
-            /*let mesUrl4j = extractUrl4j(assoUrlIcon);
-            console.log(mesUrl4j);*/
-
             let findIcone = assoUrlIcon[0].findIndex(
               (element) => element === weatherJ
             );
@@ -186,16 +179,8 @@ async function getLatitudeLongitude(ville) {
             sourceUrlGdeIcone = assoUrlIcon[1][findIcone]; //  variable de récupération de l'url icone  //
             console.log(sourceUrlGdeIcone);
 
-            /*let selectNewArray = getULR4j(assoUrlIcon);*/
-
-            /*
-            const firstC = document.getElementById("gdMeteoIcone").firstChild;
-            const gdIcone = document.createElement("img");
-            gdIcone = sourceUrlGdeIcone;
-            firstC.before(gdIcone); // insertion gde img meteo avant span // */
-
             /**
-             *                                 TABLE PREVISIONNEL
+             *                                 TABLE FORECAST
              *
              *
              **/
@@ -205,9 +190,10 @@ async function getLatitudeLongitude(ville) {
 
             for (let l = 0; l < monObjet.length; l++) {
               let findIcone = assoUrlIcon[0].findIndex(
-                (element) => element === monObjet[l].description
+                //index si
+                (element) => element === monObjet[l].description //description=description
               );
-              console.log(findIcone);
+
               let urlIcone = assoUrlIcon[1][findIcone];
               let datejouractuel = new Date(monObjet[l].date);
               let joursemaine = new Array();
