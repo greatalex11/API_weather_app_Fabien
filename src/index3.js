@@ -93,3 +93,46 @@ async function getMeteo(latlon) {
     });
   return result;
 }
+
+async function getMeteo(latlon) {
+  //setTimeout(alert, 1000, "Message d'alerte après 2 secondes");//
+
+  console.log(latlon.latitude);
+
+  let url = `http://api.openweathermap.org/data/2.5/weather?lat=${latlon.latitude}&lon=${latlon.longitude},fr&appid=0ecf229967bee135b64207c0a18df389&units=metric`;
+
+  await fetch(url)
+    .then((response) => response.json())
+    .then((response) => {
+      for (let i = 0; i < response.length; i++) {
+        result = response[i];
+      }
+    });
+  return result;
+}
+
+/*
+            let findIcone = assoUrlIcon[0].find(
+              (element) => element === weatherJ
+            ); // ok! //
+            console.log(findIcone); // ok! //
+            console.log(weatherJ); // ok! //
+
+            console.log(assoUrlIcon[1].find(findIcone));
+
+            let beta = function reload(findIcone) {
+              console.log(assoUrlIcon[1] == findIcone);
+            };
+
+            console.log(findIcone); // ok! clear sky //
+            console.log(weatherJ); // ok! clear sky //
+
+            for (let j = 0; j < assoUrlIcon[1][j]; j++) {
+              console.log(assoUrlIcon[1].find(findIcone));
+              //return assoUrlIcon[0][i].find(weatherJ);//
+            }
+          });
+      }
+    });
+}
+*/

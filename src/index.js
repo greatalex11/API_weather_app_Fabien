@@ -1,3 +1,30 @@
+/**
+ *
+ *                                                 EXTRACTION DES DATA WEATHER
+ *
+ **/
+
+function getMeteoObjByJson(myarray) {
+  console.log(myarray);
+
+  let data = new Array();
+
+  for (let i = 0; i < 40; i++) {
+    if (myarray[i].dt_txt.includes("12:00:00")) {
+      let date_txt = myarray[i].dt_txt;
+      let description = myarray[i].weather[0].description;
+      let url4j;
+      let returndata = {
+        date: date_txt,
+        description: description,
+      };
+
+      data.push(returndata); //l'un derrrière l'autre//
+    }
+  }
+  return data;
+}
+
 /**                             CODE FONCTIONNEL - ARBRE A FONCTION TRONQUE - PORTEE LATLON HORS SCOP
  *                                   FONCTION METEO INTEGREE DIRECTEMENT EN SORTIE DE GEOCODE
  *
@@ -106,76 +133,85 @@ async function getLatitudeLongitude(ville) {
             );
             affichageTemperature.innerHTML = tempJ.toFixed(1) + "°";
 
-            /*if(weatherJ==)*/
-            /* EXPLOIT TABLEAU IDEM
-            let tableauWeather = response["list"];
-            for (let i = 0; i < tableauWeather.length; i++) {
-              console.log(tableauWeather[i]);
-            }
-            console.log(tableauWeather[0]);
-            console.log(tableauWeather[0].dt_txt);
-            console.log(tableauWeather[0]["weather"][0]["description"]);
-            */
+            /**
+             *                                 TABLE ASSOCIATION ICONE_URL
+             *
+             *
+             **/
+
+            let description = [
+              "clear sky",
+              "few clouds",
+              "scattered clouds",
+              "broken clouds",
+              "shower rain",
+              "rain",
+              "thunderstorm",
+              "snow",
+              "mist",
+            ];
+            let urlIcon = [
+              "./assets/meteo/gd_soleil",
+              "./assets/meteo/gd_clairci",
+              "./assets/meteo/gd_nuageux",
+              "./assets/meteo/gd_nuageux",
+              "./assets/meteo/gd_nuageux",
+              "./assets/meteo/gd_pluie",
+              "./assets/meteo/gd_nuageux",
+              "./assets/meteo/gd_neige",
+              "./assets/meteo/gd_neige",
+            ];
+
+            let assoUrlIcon = new Array(description, urlIcon);
+            console.table(assoUrlIcon);
+
+            console.log(assoUrlIcon[0][0]);
+            console.log(assoUrlIcon[1][0]); // ok! mais pas en fonction de la ville mais tu array//
+
+            let findIcone = assoUrlIcon[0].findIndex(
+              (element) => element === weatherJ
+            );
+            console.log(findIcone); // ok! //
+            console.log(weatherJ); // ok! //
+
+            let sourceUrlGdeIcone = null;
+            sourceUrlGdeIcone = assoUrlIcon[1][findIcone]; //  variable de récupération de l'url icone  //
+            console.log(sourceUrlGdeIcone);
+
+            /*let selectNewArray = getULR4j(assoUrlIcon);*/
+
+            /*
+            const firstC = document.getElementById("gdMeteoIcone").firstChild;
+            const gdIcone = document.createElement("img");
+            gdIcone = sourceUrlGdeIcone;
+            firstC.before(gdIcone); // insertion gde img meteo avant span // */
+
+            /**
+             *                                 TABLE PREVISIONNEL
+             *
+             *
+             **/
+
+            let monObjet = getMeteoObjByJson(response["list"]);
+            console.log(monObjet);
           });
       }
     });
 }
-/**
- *                                 TABLE ASSOCIATION ICONE_URL
- *
- *
- **/
-let description = [
-  "clear sky",
-  "few clouds",
-  "scattered clouds",
-  "broken clouds",
-  "shower rain",
-  "rain",
-  "thunderstorm",
-  "snow",
-  "mist",
-];
-let urlIcon = [
-  "./assets/meteo/gd_soleil",
-  "./assets/meteo/gd_clairci",
-  "./assets/meteo/gd_nuageux",
-  "./assets/meteo/gd_nuageux",
-  "./assets/meteo/gd_nuageux",
-  "./assets/meteo/gd_pluie",
-  "./assets/meteo/gd_nuageux",
-  "./assets/meteo/gd_neige",
-  "./assets/meteo/gd_neige",
-];
-let assoUrlIcon = new Array(description, urlIcon);
 
-console.table(assoUrlIcon);
+//                                              IA    url grande icone                                 //
 
-function extratIcon() {
-  for (let j = 0; j < assoUrlIcon.length; j++) {}
-}
+/*let urlCorrespondant = null;
 
-/**                                    SUITE ARBRE A FONCTION - CF INDEX3.JS
- *                                                FETCH API METEO
- *
- *
- **/
+            for (let j = 0; j < assoUrlIcon.length; j++) {
+              let description2 = assoUrlIcon[0][j];
+              let url = assoUrlIcon[1][j];
 
-/*
+              console.log(description2); //ok indique bien 1&2L 1C//
+              console.log(url);
 
-async function getMeteo(latlon) {
-  //setTimeout(alert, 1000, "Message d'alerte après 2 secondes");//
-
-  console.log(latlon.latitude);
-
-  let url = `http://api.openweathermap.org/data/2.5/weather?lat=${latlon.latitude}&lon=${latlon.longitude},fr&appid=0ecf229967bee135b64207c0a18df389&units=metric`;
-
-  await fetch(url)
-    .then((response) => response.json())
-    .then((response) => {
-      for (let i = 0; i < response.length; i++) {
-        result = response[i];
-      }
-    });
-  return result;
-  }*/
+              if (description2 === weatherJ) {
+                urlCorrespondant = url;
+                console.log(urlCorrespondant); // null !!
+              }
+            }*/
