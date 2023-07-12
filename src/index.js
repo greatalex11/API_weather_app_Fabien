@@ -10,12 +10,13 @@ function trippy() {
     .then((response) => {
       let reponseTrippy = response;
       console.log(reponseTrippy);
+
       let trippy = (document.getElementById("trippySecond").innerHTML =
         reponseTrippy);
     });
 }
 
-let butonTrippy = document.getElementById("trippySecond");
+let butonTrippy = document.getElementById("buttonTrippy");
 butonTrippy.addEventListener("click", trippy);
 
 /**
