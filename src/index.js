@@ -35,11 +35,11 @@ function getMeteoObjByJson(myarray) {
  *                                    INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
  *
  **/
-
+/*
 const firstC = document.getElementById("gdMeteoIcone").firstChild;
 const gdIcone = document.createElement("img");
 gdIcone.src = "/assets/meteo/gd_soleil.png";
-firstC.before(gdIcone); // insertion gde img meteo avant span //
+firstC.before(gdIcone); // insertion gde img meteo avant span //*/
 
 /**
  *
@@ -120,6 +120,9 @@ async function getLatitudeLongitude(ville) {
             let dateJ = response["list"][0]["dt_txt"];
             let tempJ = response["list"][0]["main"]["temp"];
             let weatherJ = response["list"][0]["weather"][0]["description"];
+            let tempMaxJ = response["list"][0]["main"]["temp_max"];
+            let tempMinJ = response["list"][0]["main"]["temp_min"];
+
             console.log(city, country, dateJ, tempJ, weatherJ);
 
             let cityLabel = document.querySelector("#ville");
@@ -179,6 +182,24 @@ async function getLatitudeLongitude(ville) {
             sourceUrlGdeIcone = assoUrlIcon[1][findIcone]; //  variable de récupération de l'url icone  //
             console.log(sourceUrlGdeIcone);
 
+            let divGdeIcone = (document.getElementById(
+              "gdMeteoIcone"
+            ).innerHTML =
+              `<img width=140 src='` +
+              sourceUrlGdeIcone +
+              `'>` +
+              `<span>` +
+              Math.round(tempJ) +
+              `°` +
+              `</span>`);
+
+            let divMedianMin = (document.getElementById("temp_Min").innerHTML =
+              `<span>` + Math.round(tempMinJ) + ` ° Min` + `</span>`);
+
+            let divMedianMax = (document.getElementById("temp_Max").innerHTML =
+              `<span>` + Math.round(tempMaxJ) + ` ° Max` + `</span>`);
+
+            console.log(divMedianMax, divMedianMin, divGdeIcone);
             /**
              *                                 TABLE FORECAST
              *
@@ -191,8 +212,8 @@ async function getLatitudeLongitude(ville) {
             for (let l = 0; l < monObjet.length; l++) {
               let findIcone = assoUrlIcon[0].findIndex(
                 //index si
-                (element) => element === monObjet[l].description //description=description
-              );
+                (element) => element === monObjet[l].description
+              ); //description=description
 
               let urlIcone = assoUrlIcon[1][findIcone];
               let datejouractuel = new Date(monObjet[l].date);
@@ -200,13 +221,15 @@ async function getLatitudeLongitude(ville) {
               joursemaine = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
               console.log(joursemaine);
               console.log(datejouractuel.getDay());
+
               let div = (document.getElementById("jour" + (l + 1)).innerHTML =
                 `<p>` +
                 joursemaine[datejouractuel.getDay()] +
                 `</p> <p><img width=30 src='` +
                 urlIcone +
                 `'></p> <p>` +
-                monObjet[l].temperature +
+                Math.round(monObjet[l].temperature) +
+                `°` +
                 `</p>`);
               if (l == 3) {
                 break;
