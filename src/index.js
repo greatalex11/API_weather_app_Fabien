@@ -1,4 +1,45 @@
 /**
+ *                                            FETCH TRIPADVISOR EN LOCAL
+ *
+ *
+ **/
+
+function trippy() {
+  fetch(`./php/scrapp-google.php`)
+    .then((response) => response.text())
+    .then((response) => {
+      let reponseTrippy = response;
+      console.log(reponseTrippy);
+      let trippy = (document.getElementById("trippySecond").innerHTML =
+        reponseTrippy);
+    });
+}
+
+let butonTrippy = document.getElementById("trippySecond");
+butonTrippy.addEventListener("click", trippy);
+
+/**
+ *
+ *
+ *                                                FETCH WIKI EN LOCAL
+ *
+ **/
+
+function wiki() {
+  fetch(`./php/scrapp-wikipedia.php`)
+    .then((response) => response.text())
+    .then((response) => {
+      let reponseWiki = response;
+      console.log(reponseWiki);
+      let divWiki = (document.getElementById("wikiSecond").innerHTML =
+        reponseWiki);
+    });
+}
+
+let butonWiki = document.getElementById("buttonWiki");
+butonWiki.addEventListener("click", wiki);
+
+/**
  *
  *                                       EXTRACTION DES DATA WEATHER
  *
@@ -23,23 +64,6 @@ function getMeteoObjByJson(myarray) {
   }
   return data;
 }
-
-/**                        CODE FONCTIONNEL - ARBRE A FONCTION TRONQUE - PORTEE LATLON HORS SCOP
- *                                FONCTION METEO INTEGREE DIRECTEMENT EN SORTIE DE GEOCODE
- *
- *
- **/
-
-/**
- *
- *                                    INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN
- *
- **/
-/*
-const firstC = document.getElementById("gdMeteoIcone").firstChild;
-const gdIcone = document.createElement("img");
-gdIcone.src = "/assets/meteo/gd_soleil.png";
-firstC.before(gdIcone); // insertion gde img meteo avant span //*/
 
 /**
  *
@@ -180,7 +204,6 @@ async function getLatitudeLongitude(ville) {
 
             let sourceUrlGdeIcone = null;
             sourceUrlGdeIcone = assoUrlIcon[1][findIcone]; //  variable de récupération de l'url icone  //
-            console.log(sourceUrlGdeIcone);
 
             let divGdeIcone = (document.getElementById(
               "gdMeteoIcone"
@@ -198,6 +221,15 @@ async function getLatitudeLongitude(ville) {
 
             let divMedianMax = (document.getElementById("temp_Max").innerHTML =
               `<span>` + Math.round(tempMaxJ) + ` ° Max` + `</span>`);
+
+            let joursemaine2 = new Array();
+            joursemaine2 = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
+
+            console.log(dateJ);
+            /*console.log(joursemaine2[dateJ.getDay()]);*/
+
+            let divJJ = (document.getElementById("dateJJHH").innerHTML =
+              `<p>` + dateJ);
 
             console.log(divMedianMax, divMedianMin, divGdeIcone);
             /**
@@ -219,7 +251,7 @@ async function getLatitudeLongitude(ville) {
               let datejouractuel = new Date(monObjet[l].date);
               let joursemaine = new Array();
               joursemaine = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
-              console.log(joursemaine);
+
               console.log(datejouractuel.getDay());
 
               let div = (document.getElementById("jour" + (l + 1)).innerHTML =
