@@ -9,10 +9,12 @@ function trippy() {
     .then((response) => response.text())
     .then((response) => {
       let reponseTrippy = response;
-      console.log(reponseTrippy);
 
-      let trippy = (document.getElementById("trippySecond").innerHTML =
-        reponseTrippy);
+      let trippy = document.getElementById("trippySecond");
+      trippy.style.fontSize = "10px";
+      trippy.style.overflow = "ellipsis";
+      trippy.style.margin = "10px";
+      trippy.innerHTML = reponseTrippy;
     });
 }
 
@@ -32,8 +34,12 @@ function wiki() {
     .then((response) => {
       let reponseWiki = response;
       console.log(reponseWiki);
-      let divWiki = (document.getElementById("wikiSecond").innerHTML =
-        reponseWiki);
+      let divWiki = document.getElementById("wikiSecond");
+      divWiki.style.fontSize = "10px";
+      divWiki.style.overflow = "ellipsis";
+      /*divWiki.style.overflow = "break-word";*/
+      divWiki.style.margin = "15px";
+      divWiki.innerHTML = reponseWiki;
     });
 }
 
