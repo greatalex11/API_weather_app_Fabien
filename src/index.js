@@ -9,14 +9,15 @@ function villesDataList() {
     .then((response) => response.json())
     .then((response) => {
       let villesRamdomList = response;
-      console.log(villesRamdomList.length);
+
       let nbRandom = Math.round(Math.random() * (villesRamdomList.length - 1));
-      console.log(nbRandom);
+
       let resultVilleRandom = villesRamdomList[nbRandom];
-      let nameCounrtyRandom = resultVilleRandom.country;
-      let codeCounrtyRandom = resultVilleRandom.name;
-      console.log(nameCounrtyRandom, codeCounrtyRandom);
+      let nameCounrtyRandom = resultVilleRandom.name;
+      let codeCounrtyRandom = resultVilleRandom.country;
+      ville = nameCounrtyRandom;
     });
+  return ville;
 }
 
 let butonRandom = document.getElementById("random");
@@ -73,7 +74,7 @@ butonWiki.addEventListener("click", wiki);
 
 /**
  *
- *                                       EXTRACTION DES DATA WEATHER
+ *                                       EXTRACTION DES DATA WEATHER 4j
  *
  **/
 
@@ -123,6 +124,7 @@ function getVille(ville) {
   if (ville == "") {
     ville = "Besancon"; //valeur par défaut : besançon
     return ville;
+  } else if (ville != "") {
   } else {
     return ville;
   }
