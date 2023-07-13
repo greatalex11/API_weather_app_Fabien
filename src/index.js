@@ -1,4 +1,28 @@
 /**
+ *                                            FETCH LISTE VILLES EN LOCAL / RANDOM
+ *
+ *
+ **/
+
+function villesDataList() {
+  fetch(`./json/city.list.json`)
+    .then((response) => response.json())
+    .then((response) => {
+      let villesRamdomList = response;
+      console.log(villesRamdomList.length);
+      let nbRandom = Math.round(Math.random() * (villesRamdomList.length - 1));
+      console.log(nbRandom);
+      let resultVilleRandom = villesRamdomList[nbRandom];
+      let nameCounrtyRandom = resultVilleRandom.country;
+      let codeCounrtyRandom = resultVilleRandom.name;
+      console.log(nameCounrtyRandom, codeCounrtyRandom);
+    });
+}
+
+let butonRandom = document.getElementById("random");
+butonRandom.addEventListener("click", villesDataList);
+
+/**
  *                                            FETCH TRIPADVISOR EN LOCAL
  *
  *
@@ -115,7 +139,7 @@ function getVille(ville) {
 
 async function getLatitudeLongitude(ville) {
   await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${ville},fr&limit=5&appid=0ecf229967bee135b64207c0a18df389`
+    `http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=5&appid=0ecf229967bee135b64207c0a18df389`
   )
     .then((response) => response.json()) // convert to json//
     /*.then((json) => console.log(json)) //print data to console// */
@@ -155,7 +179,7 @@ async function getLatitudeLongitude(ville) {
             let tempMaxJ = response["list"][0]["main"]["temp_max"];
             let tempMinJ = response["list"][0]["main"]["temp_min"];
 
-            console.log(city, country, dateJ, tempJ, weatherJ);
+            console.log(country);
 
             let cityLabel = document.querySelector("#ville");
             cityLabel.innerHTML = city;
@@ -164,6 +188,9 @@ async function getLatitudeLongitude(ville) {
               "#gdMeteoIcone > span"
             );
             affichageTemperature.innerHTML = tempJ.toFixed(1) + "°";
+
+            let countryCodeJ = (document.getElementById("pays").innerHTML =
+              country);
 
             /**
              *                                 TABLE ASSOCIATION ICONE_URL
