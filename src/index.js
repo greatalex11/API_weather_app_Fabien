@@ -13,7 +13,8 @@ function trippy() {
       let trippy = document.getElementById("trippySecond");
       trippy.style.fontSize = "10px";
       trippy.style.overflow = "ellipsis";
-      trippy.style.margin = "10px";
+      trippy.style.margin = "5px 5px 5px 18px";
+
       trippy.innerHTML = reponseTrippy;
     });
 }
@@ -38,7 +39,7 @@ function wiki() {
       divWiki.style.fontSize = "10px";
       divWiki.style.overflow = "ellipsis";
       /*divWiki.style.overflow = "break-word";*/
-      divWiki.style.margin = "15px";
+      divWiki.style.margin = "5px";
       divWiki.innerHTML = reponseWiki;
     });
 }
@@ -215,7 +216,7 @@ async function getLatitudeLongitude(ville) {
             let divGdeIcone = (document.getElementById(
               "gdMeteoIcone"
             ).innerHTML =
-              `<img width=140 src='` +
+              `<img width=120 src='` +
               sourceUrlGdeIcone +
               `'>` +
               `<span>` +

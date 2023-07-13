@@ -53,7 +53,7 @@
   box-sizing: content-box;
   gap: 30px;
   width: 340px;
-  height: 150px;
+  height: 100px;
   text-align: center;
   vertical-align: middle;
 
@@ -63,7 +63,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  padding: 22px;
+  padding: 26px;
   box-sizing: content-box;
 }
 
@@ -149,6 +149,9 @@
   line-height: 1.25rem;
   text-transform: capitalize;
 }
+#buttonTrippy {
+  margin-left: 12px;
+}
 #wikiAdisor {
   display: flex;
   flex-wrap: wrap;
@@ -160,7 +163,7 @@
   width: 351px;
   height: 422px;
   margin-top: 10px;
-  padding: 15px;
+  padding: 10px;
   box-sizing: border-box;
 }
 #random {
