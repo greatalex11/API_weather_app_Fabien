@@ -6,8 +6,6 @@
 
 let resultVilleRandom, nameCounrtyRandom, codeCounrtyRandom;
 var ville2;
-let monObjet2 = ["villex"];
-
 function villesDataList() {
   fetch(`./json/city.list.json`)
     .then((response) => response.json())
@@ -18,18 +16,20 @@ function villesDataList() {
       resultVilleRandom = villesRamdomList[nbRandom];
       nameCounrtyRandom = resultVilleRandom.name;
       console.log(nameCounrtyRandom);
-      ville2 = nameCounrtyRandom;
-      monObjet2[0] = nameCounrtyRandom;
+      return nameCounrtyRandom;
 
-      /*console.log(demo(ville2));*/
-      /*return ville2;*/
+      function demo(ville2) {
+        ville2 = nameCounrtyRandom;
+        return ville2;
+      }
     });
 }
-
-villesDataList(monObjet2);
-console.log(monObjet2);
-
+console.log(villesDataList());
 //console.log(demo(ville2));//
+
+let butonRandom = document.getElementById("random");
+butonRandom.addEventListener("click", villesDataList);
+console.log(butonRandom.onclick);
 
 /*
 let resultVilleRandom, nameCounrtyRandom, codeCounrtyRandom;
@@ -154,16 +154,7 @@ validateVille.addEventListener("click", getData);
  *
  **/
 
-console.log(monObjet2);
-
-function getVille(ville, monObjet2) {
-  let butonRandom = document.getElementById("random");
-  butonRandom.addEventListener("click", villesDataList);
-
-  console.log(monObjet2);
-
-  console.log(ville);
-
+function getVille(ville) {
   if ((validateVille = true)) {
     ville = searchVille.value;
     if (ville == "") {
@@ -172,6 +163,9 @@ function getVille(ville, monObjet2) {
     } else {
       return ville;
     }
+  } else if (butonRandom.value != "") {
+    console.log("coucou");
+    ville = nantes;
   }
 }
 
@@ -182,9 +176,20 @@ function getVille(ville, monObjet2) {
  **/
 
 /*{country code}*/
-//creation objet latlon, easy to pass values*/
+//creation objet latlon, easy to pass values
+/*
+if ((nameCounrtyRandom = true)) {
+  ville = nameCounrtyRandom;
+  getLatitudeLongitude(ville);
+} else {
+  ville = ville;
+  getLatitudeLongitude(ville);
+}
+*/
 
 async function getLatitudeLongitude(ville) {
+  console.log(ville);
+
   await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=5&appid=0ecf229967bee135b64207c0a18df389`
   )
@@ -274,10 +279,10 @@ async function getLatitudeLongitude(ville) {
 
             let assoUrlIcon = new Array(description, urlIcon);
             console.table(assoUrlIcon);
-
+            /*
             console.log(assoUrlIcon[0][0]);
             console.log(assoUrlIcon[1][0]); // ok! mais pas en fonction de la ville mais tu array//
-
+*/
             let findIcone = assoUrlIcon[0].findIndex(
               (element) => element === weatherJ
             );
@@ -314,7 +319,6 @@ async function getLatitudeLongitude(ville) {
               `<p>` + dateJ);
 
             console.log(divMedianMax, divMedianMin, divGdeIcone);
-
             /**
              *                                 TABLE FORECAST
              *
@@ -326,9 +330,9 @@ async function getLatitudeLongitude(ville) {
 
             for (let l = 0; l < monObjet.length; l++) {
               let findIcone = assoUrlIcon[0].findIndex(
-                //index si//
+                //index si
                 (element) => element === monObjet[l].description
-              ); //description=description//
+              ); //description=description
 
               let urlIcone = assoUrlIcon[1][findIcone];
               let datejouractuel = new Date(monObjet[l].date);
@@ -356,8 +360,8 @@ async function getLatitudeLongitude(ville) {
 }
 
 //                                              IA    url grande icone                                 //
-/*
-let urlCorrespondant = null;
+
+/*let urlCorrespondant = null;
 
             for (let j = 0; j < assoUrlIcon.length; j++) {
               let description2 = assoUrlIcon[0][j];
@@ -370,4 +374,4 @@ let urlCorrespondant = null;
                 urlCorrespondant = url;
                 console.log(urlCorrespondant); // null !!
               }
-            } */
+            }*/
