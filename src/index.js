@@ -4,9 +4,8 @@
  *
  **/
 
-let resultVilleRandom, nameCounrtyRandom, codeCounrtyRandom;
-var ville2;
 let monObjet2 = ["villex"];
+console.log(monObjet2);
 
 function villesDataList() {
   fetch(`./json/city.list.json`)
@@ -14,22 +13,30 @@ function villesDataList() {
     .then((response) => {
       let villesRamdomList = response;
       let nbRandom = Math.round(Math.random() * (villesRamdomList.length - 1));
+      console.log(nbRandom);
+      let resultVilleRandom = villesRamdomList[nbRandom];
+      let nameCounrtyRandom = resultVilleRandom.name;
 
-      resultVilleRandom = villesRamdomList[nbRandom];
-      nameCounrtyRandom = resultVilleRandom.name;
       console.log(nameCounrtyRandom);
-      ville2 = nameCounrtyRandom;
       monObjet2[0] = nameCounrtyRandom;
-
-      /*console.log(demo(ville2));*/
-      /*return ville2;*/
+      getVilleRandom(nameCounrtyRandom);
     });
+  return monObjet2[0];
 }
+let btnRandom = document.getElementById("btnRandom");
+btnRandom.addEventListener("click", villesDataList);
+console.log(monObjet2[0]);
+console.log(btnRandom.value);
+/*
+let butonRandom = document.getElementById("btnRandom");
+butonRandom.addEventListener("click", villesDataList);
+console.log(butonRandom.value);
 
-villesDataList(monObjet2);
+console.log(butonRandom);
 console.log(monObjet2);
 
-//console.log(demo(ville2));//
+villesDataList(monObjet2);
+console.log(monObjet2);*/
 
 /*
 let resultVilleRandom, nameCounrtyRandom, codeCounrtyRandom;
@@ -74,13 +81,20 @@ function trippy() {
       trippy.style.fontSize = "10px";
       trippy.style.overflow = "ellipsis";
       trippy.style.margin = "5px 5px 5px 18px";
-
       trippy.innerHTML = reponseTrippy;
     });
 }
 
 let butonTrippy = document.getElementById("buttonTrippy");
 butonTrippy.addEventListener("click", trippy);
+/*
+let divBlankWiki = document.getElementById("containerAdvisor");
+console.log(divBlankWiki);
+
+divBlankWiki.style.fontSize = "10px";
+divBlankWiki.style.width = "300px";
+divBlankWiki.style.height = "500px";
+divBlankWiki.innerHTML = reponseTrippy;*/
 
 /**
  *
@@ -154,16 +168,7 @@ validateVille.addEventListener("click", getData);
  *
  **/
 
-console.log(monObjet2);
-
-function getVille(ville, monObjet2) {
-  let butonRandom = document.getElementById("random");
-  butonRandom.addEventListener("click", villesDataList);
-
-  console.log(monObjet2);
-
-  console.log(ville);
-
+function getVille(ville) {
   if ((validateVille = true)) {
     ville = searchVille.value;
     if (ville == "") {
@@ -183,6 +188,11 @@ function getVille(ville, monObjet2) {
 
 /*{country code}*/
 //creation objet latlon, easy to pass values*/
+
+function getVilleRandom() {
+  let resutlex = getLatitudeLongitude(monObjet2);
+  console.log(resutlex);
+}
 
 async function getLatitudeLongitude(ville) {
   await fetch(

@@ -234,3 +234,7 @@
 #advisorMain > p {
   font-size: max(10px, 20px);
 }
+#btnRandom {
+  width: 50px;
+  height: 20px;
+}
