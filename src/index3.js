@@ -1,3 +1,23 @@
+/*
+const swiperContRandom = document.querySelector("swiper-container");
+const swiperSlider = document.querySelector("swiper-slider");
+const buttonSwip = document.getElementById("random2");
+
+buttonSwip.addEventListener("click", swiper);
+function swiper() {
+  swiperSlider.setAttribute("slides-per-view", "1");
+ }
+*/
+/*
+let swiper = new (".swiper", {
+  direction: "horizontal",
+  loop: false,
+  slidesPerView: "auto",
+  noSwiping: true,
+  noSwipingClass: "no-swipe",
+});
+*/
+
 /**
  *
  *                     INSERTION DE LA GRANDE ICONE METEO - PAGE MAIN

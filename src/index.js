@@ -12,11 +12,11 @@ function villesDataList() {
     .then((response) => {
       let villesRamdomList = response;
       let nbRandom = Math.round(Math.random() * (villesRamdomList.length - 1));
-      console.log(nbRandom);
+      //console.log(nbRandom);//
       let resultVilleRandom = villesRamdomList[nbRandom];
       let nameCounrtyRandom = resultVilleRandom.name;
 
-      console.log(nameCounrtyRandom);
+      //console.log(nameCounrtyRandom);//
       monObjet2[0] = nameCounrtyRandom;
       getVilleRandom(nameCounrtyRandom);
     });
@@ -155,8 +155,10 @@ function getVille(ville) {
  **/
 
 function getVilleRandom() {
-  let resutlex = getLatitudeLongitude(monObjet2);
-  console.log(resutlex);
+  /*let effetAffichage = document.getElementById("ville");
+  if (effetAffichage.className === "effect") {
+    effetAffichage.classList.replace("effect", "typing-demo")*/ let resutlex =
+    getLatitudeLongitude(monObjet2);
 }
 
 /**
@@ -198,7 +200,7 @@ async function getLatitudeLongitude(ville) {
           .then((response) => response.json()) // convert to json//
           /*.then((json) => console.log(json));                                               //print data to console// */
           .then((response) => {
-            console.log(response);
+            //console.log(response);//
             let city = response["city"]["name"];
             let country = response["city"]["country"];
             let dateJ = response["list"][0]["dt_txt"];
@@ -208,6 +210,30 @@ async function getLatitudeLongitude(ville) {
             let tempMinJ = response["list"][0]["main"]["temp_min"];
 
             //console.log(country);//
+
+            /*                          AJOUT DE LA VILLE A LA LISTE DES FAVORIS                        */
+
+            let tableFavoris = new Array();
+
+            function favoris() {
+              let ListFavoris = {
+                ville: city,
+                country: country,
+                icone: sourceUrlGdeIcone,
+              };
+
+              tableFavoris.push(ListFavoris);
+
+              console.log(ListFavoris);
+              console.log(tableFavoris);
+            }
+
+            let btnFavoris = document.getElementById("btnFavoris");
+            btnFavoris.addEventListener("click", favoris);
+
+            console.log(tableFavoris);
+
+            /*                                  AFFICHAGE RESULAT METEO                                 */
 
             let cityLabel = document.querySelector("#ville");
             cityLabel.innerHTML = city;
@@ -238,6 +264,7 @@ async function getLatitudeLongitude(ville) {
               "overcast clouds",
               "snow",
               "mist",
+              "moderate rain",
             ];
             let urlIcon = [
               "../assets/meteo/gd_soleil.png",
@@ -251,20 +278,21 @@ async function getLatitudeLongitude(ville) {
               "../assets/meteo/gd_nuageux.png",
               "../assets/meteo/gd_neige.png",
               "../assets/meteo/gd_neige.png",
+              "../assets/meteo/gd_pluie.png",
             ];
 
             let assoUrlIcon = new Array(description, urlIcon);
-            console.table(assoUrlIcon);
+            //console.table(assoUrlIcon);//
 
-            console.log(assoUrlIcon[0][0]);
+            /*console.log(assoUrlIcon[0][0]);
             console.log(assoUrlIcon[1][0]); // ok! mais pas en fonction de la ville mais tu array//
-
+            */
             let findIcone = assoUrlIcon[0].findIndex(
               (element) => element === weatherJ
             );
-            console.log(findIcone); // ok! //
-            console.log(weatherJ); // ok! //
-
+            /*console.log(findIcone); // ok! //
+              console.log(weatherJ); // ok! //
+            */
             let sourceUrlGdeIcone = null;
             sourceUrlGdeIcone = assoUrlIcon[1][findIcone]; //  variable de récupération de l'url icone  //
 
@@ -294,7 +322,7 @@ async function getLatitudeLongitude(ville) {
             let divJJ = (document.getElementById("dateJJHH").innerHTML =
               `<p>` + dateJ);
 
-            console.log(divMedianMax, divMedianMin, divGdeIcone);
+            //console.log(divMedianMax, divMedianMin, divGdeIcone);//
 
             /**
              *                                 TABLE FORECAST
@@ -303,7 +331,7 @@ async function getLatitudeLongitude(ville) {
              **/
 
             let monObjet = getMeteoObjByJson(response["list"]);
-            console.log(monObjet);
+            //console.log(monObjet);//
 
             for (let l = 0; l < monObjet.length; l++) {
               let findIcone = assoUrlIcon[0].findIndex(
@@ -316,7 +344,7 @@ async function getLatitudeLongitude(ville) {
               let joursemaine = new Array();
               joursemaine = ["LUN", "MAR", "MER", "JEU", "VEN", "SAM", "DIM"];
 
-              console.log(datejouractuel.getDay());
+              //console.log(datejouractuel.getDay());//
 
               let div = (document.getElementById("jour" + (l + 1)).innerHTML =
                 `<p>` +
