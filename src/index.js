@@ -120,7 +120,7 @@ function getMeteoObjByJson(myarray) {
 
 function getData() {
   let ville = getVille();
-  let latlon = getLatitudeLongitude(ville);
+  let latlon = getLatitudeLongitude(ville, "search");
 }
 let validateVille = document.querySelector("button");
 const searchVille = document.querySelector("input");
@@ -154,11 +154,24 @@ function getVille(ville) {
  *
  **/
 
-function getVilleRandom() {
-  /*let effetAffichage = document.getElementById("ville");
-  if (effetAffichage.className === "effect") {
-    effetAffichage.classList.replace("effect", "typing-demo")*/ let resutlex =
-    getLatitudeLongitude(monObjet2);
+function getVilleRandom(monObjet2) {
+  let effet = getLatitudeLongitude(monObjet2, "random");
+  affichageEffet(effet); //L241
+}
+
+let effetAffichage;
+function affichageEffet(city) {
+  divVille = document.getElementById("ville");
+  divVille.innerHTML = "";
+  if (document.getElementById("typingDemo") == undefined) {
+    monSpan = document.createElement("span");
+    monSpan.id = "typingDemo";
+    console.log(city);
+    divVille.append(monSpan);
+  } else {
+    monSpan = document.getElementById("typingDemo");
+  }
+  monSpan.innerHTML = city;
 }
 
 /**
@@ -167,7 +180,7 @@ function getVilleRandom() {
  *
  **/
 
-async function getLatitudeLongitude(ville) {
+async function getLatitudeLongitude(ville, callType = "search") {
   await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=5&appid=0ecf229967bee135b64207c0a18df389`
   )
@@ -194,6 +207,7 @@ async function getLatitudeLongitude(ville) {
       meteo(latlon);
 
       function meteo(latlon) {
+        let city = "";
         fetch(
           `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389&units=metric`
         )
@@ -201,6 +215,7 @@ async function getLatitudeLongitude(ville) {
           /*.then((json) => console.log(json));                                               //print data to console// */
           .then((response) => {
             //console.log(response);//
+
             let city = response["city"]["name"];
             let country = response["city"]["country"];
             let dateJ = response["list"][0]["dt_txt"];
@@ -223,20 +238,25 @@ async function getLatitudeLongitude(ville) {
               };
 
               tableFavoris.push(ListFavoris);
-
-              console.log(ListFavoris);
               console.log(tableFavoris);
+              return tableFavoris;
             }
 
             let btnFavoris = document.getElementById("btnFavoris");
             btnFavoris.addEventListener("click", favoris);
-
+            for (let favoList of tableFavoris) {
+              console.log(favoList);
+            }
             console.log(tableFavoris);
 
             /*                                  AFFICHAGE RESULAT METEO                                 */
 
-            let cityLabel = document.querySelector("#ville");
-            cityLabel.innerHTML = city;
+            if (callType == "search") {
+              let cityLabel = document.querySelector("#ville");
+              cityLabel.innerHTML = city;
+            } else {
+              affichageEffet(city);
+            }
 
             let affichageTemperature = document.querySelector(
               "#gdMeteoIcone > span"

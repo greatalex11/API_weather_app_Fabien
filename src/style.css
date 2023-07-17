@@ -22,7 +22,8 @@
 #affichageSup {
   background: url(/assets/marseille/Marseille.png);
   width: 21.9375rem;
-  height: 17.9375rem;
+  max-height: 16.8rem;
+  margin-bottom: 10px;
 }
 
 #affichageMedian {
@@ -31,12 +32,13 @@
   justify-content: center;
   gap: 50px;
   width: 350px;
+  max-height: 50px;
   padding: 5px 10px 5px 10px;
   background: url(/assets/marseille/fonmedian.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
+  margin-top: 10px;
   align-items: center;
 }
 
@@ -53,7 +55,7 @@
   box-sizing: content-box;
   gap: 30px;
   width: 340px;
-  height: 100px;
+  max-height: 90px;
   text-align: center;
   vertical-align: middle;
 
@@ -66,8 +68,8 @@
   padding: 27px;
   box-sizing: content-box;
 }
-/*                                          animation nom de ville pour random 
-.typing-demo {
+/*                                        animation nom de ville pour random    */
+.typingDemo {
   width: 350px;
   animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
@@ -89,7 +91,7 @@
   50% {
     border-color: transparent;
   }
-}*/
+}
 
 #ville {
   font-family: poppins;
@@ -100,7 +102,7 @@
   text-transform: capitalize;
   color: var(--main-color);
   margin-bottom: 0;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 8px;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -110,12 +112,12 @@
   text-transform: uppercase;
   font-size: 24px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 10px;
   letter-spacing: 0em;
   text-align: center;
   color: var(--main-color);
+  text-align: center;
 
-  margin-top: 20px;
   margin-bottom: 8px;
 }
 
@@ -154,7 +156,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 7px auto;
+  margin: 4px auto;
 }
 
 #gdMeteoIcone > span {
@@ -193,7 +195,8 @@
   box-sizing: border-box;
 }
 #btnBottom {
-  margin-bottom: 0.6375rem;
+  margin-bottom: 0.8375rem;
+  vertical-align: top;
 }
 #random {
   display: inline;
