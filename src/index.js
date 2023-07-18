@@ -1,4 +1,41 @@
 /**
+ *                                                        swiper cst
+ *
+ *
+ **/
+const swiper = new Swiper(".swiper", {
+  // Optional parameters
+  direction: "horizontal",
+  loop: true,
+
+  on: {
+    init: function () {
+      console.log("swiper initialized");
+    },
+
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination",
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+  },
+});
+
+swiper.on("slideChange", function () {
+  console.log("slide changed");
+});
+
+/**
  *                                          FETCH LISTE VILLES EN LOCAL / RANDOM
  *
  *
@@ -383,6 +420,11 @@ async function getLatitudeLongitude(ville, callType = "search") {
       }
     });
 }
+
+/*
+  // And if we need scrollbar
+  scrollbar: {
+    el: ".swiper-scrollbar",*/
 
 //                                              IA    url grande icone                                 //
 /*

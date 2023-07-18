@@ -93,6 +93,8 @@
   }
 }
 
+/*                                        mise en forme des champs                           */
+
 #ville {
   font-family: poppins;
   font-size: 2.5rem;
@@ -282,15 +284,23 @@
 }
 
 .swiper {
+  display: flex;
+  justify-content: center;
   background-color: darkcyan;
+  width: 250px;
+  height: 40px;
+  margin-top: 150px;
+  margin-left: 80px;
+  text-align: center;
+}
 
-  width: 100px;
-  height: 300px;
-  padding: 20px;
+.swiper-wrapper {
+  width: 250px;
+  height: 30px;
 }
 .swiper-slide {
   background-color: beige;
   background-position: center;
-  width: 300px;
-  height: 20px;
+  width: 125px;
+  height: 30px;
 }
