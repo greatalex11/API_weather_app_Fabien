@@ -1,22 +1,40 @@
-/*
-const swiperContRandom = document.querySelector("swiper-container");
-const swiperSlider = document.querySelector("swiper-slider");
-const buttonSwip = document.getElementById("random2");
+/* PREPA SWIPER JS
 
-buttonSwip.addEventListener("click", swiper);
-function swiper() {
-  swiperSlider.setAttribute("slides-per-view", "1");
- }
+let divBlankWiki = document.getElementById("containerAdvisor");
+console.log(divBlankWiki);
+divBlankWiki.style.fontSize = "10px";
+divBlankWiki.style.width = "300px";
+divBlankWiki.style.height = "500px";
+divBlankWiki.innerHTML = reponseTrippy;
 */
+
+/*                          AJOUT DE LA VILLE A LA LISTE DES FAVORIS                        */
 /*
-let swiper = new (".swiper", {
-  direction: "horizontal",
-  loop: false,
-  slidesPerView: "auto",
-  noSwiping: true,
-  noSwipingClass: "no-swipe",
-});
-*/
+
+            let tableFavoris = new Array();
+
+            function favoris() {
+              let ListFavoris = {
+                ville: city,
+                country: country,
+                icone: sourceUrlGdeIcone,
+              };
+
+              tableFavoris.push(ListFavoris);
+              console.log(tableFavoris);
+              return tableFavoris;
+            }
+
+            let btnFavoris = document.getElementById("btnFavoris");
+            btnFavoris.addEventListener("click", favoris);
+            for (let favoList of tableFavoris) {
+              console.log(favoList);
+            }
+            console.log(tableFavoris);
+
+
+
+
 
 /**
  *

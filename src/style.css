@@ -22,8 +22,8 @@
 #affichageSup {
   background: url(/assets/marseille/Marseille.png);
   width: 21.9375rem;
-  max-height: 16.8rem;
-  margin-bottom: 10px;
+  max-height: 17rem;
+  margin-bottom: 8px;
 }
 
 #affichageMedian {
@@ -33,7 +33,7 @@
   gap: 50px;
   width: 350px;
   max-height: 50px;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 17px 5px 10px;
   background: url(/assets/marseille/fonmedian.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -47,72 +47,57 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   background-image: url(/assets/marseille/fond4jours.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   box-sizing: content-box;
-  gap: 30px;
+  gap: 32px;
   width: 340px;
   max-height: 90px;
   text-align: center;
   vertical-align: middle;
-
   color: #fff;
   font-size: 24px;
   font-family: Poppins;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  padding: 27px;
+  padding: 35px;
   box-sizing: content-box;
-}
-/*                                        animation nom de ville pour random    */
-.typingDemo {
-  width: 350px;
-  animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.1875rem solid;
-  font-family: "Inter";
-  font-style: normal;
-  font-size: 2.5rem;
-  line-height: 6.3rem;
-  text-align: center;
-  color: var(--color-white);
-}
-@keyframes typing {
-  from {
-    width: 0;
-  }
-}
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
-/*                                        mise en forme des champs                           */
+/*
+ *                                        mise en forme des champs  
+ *
+ */
 
+.input[text]r {
+  font-size: large;
+  font-weight: 700;
+  color: black;
+}
 #ville {
   font-family: poppins;
-  font-size: 2.5rem;
-  font-weight: 400;
+  font-size: 2.3rem;
+  font-weight: 500;
   line-height: 100%;
   text-align: center;
   text-transform: capitalize;
   color: var(--main-color);
   margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 8px;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  max-height: 60px;
 }
 #pays {
   font-family: Montserrat;
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 10px;
   letter-spacing: 0em;
@@ -192,7 +177,7 @@
   background-repeat: no-repeat;
   width: 351px;
   height: 422px;
-  margin-top: 7px;
+  margin-top: 2px;
   padding: 10px 10px 1px 10px;
   box-sizing: border-box;
 }
@@ -212,19 +197,6 @@
   line-height: 20px;
   text-decoration: underline;
 }
-/*
-#random::before {
-  content: url(/assets/meteo/chevron_gauche.png);
-  width: 121px;
-  height: 34px;
-  margin-right: 30px;
-}
-#random::after {
-  content: url(/assets/meteo/chevrons-droit.png);
-  width: 121px;
-  height: 34px;
-  margin-left: 30px;
-}*/
 
 #advisorMain,
 #wikiMain {
@@ -271,36 +243,92 @@
   font-size: max(10px, 20px);
 }
 
-#btnRandom,
-#btnFavoris {
+#btnRandom {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   display: inline;
   background-color: transparent;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-color: cadetblue;
+  border-color: rgb(160, 95, 120, 0.3);
   width: 50px;
-  height: 20px;
+  height: 25px;
+  margin: 20px;
+}
+
+#infoRandom {
+  position: relative;
+  bottom: 45px;
+  left: 25px;
+  font-size: 25px;
+  color: transparent;
+  font-family: poppins;
+}
+
+#infoRandom:hover {
+  color: #d6c8d1;
+  font-size: 16px;
+  font-weight: 500;
+  bottom: 70px;
+  left: 15px;
+}
+
+#infoLike {
+  position: relative;
+  bottom: 45px;
+  left: 200px;
+  font-size: 20px;
+  color: transparent;
+  font-family: poppins;
+}
+
+#infoLike:hover {
+  color: #be5298;
+  font-size: 15px;
+  font-weight: 500;
+  bottom: 75px;
+  left: 205px;
+  font-size: 15px;
+}
+
+#btnFavoris {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: inline;
+  background-color: transparent;
+  border-color: rgb(160, 95, 120, 0.3);
+  width: 50px;
+  height: 25px;
   margin: 20px;
 }
 
 .swiper {
   display: flex;
   justify-content: center;
-  background-color: darkcyan;
-  width: 250px;
-  height: 40px;
+  background-color: transparent;
+  width: 380px;
+  height: 810px;
   margin-top: 150px;
   margin-left: 80px;
   text-align: center;
 }
 
-.swiper-wrapper {
+.swiper-slide {
+  background: transparent;
+  background-position: center;
   width: 250px;
   height: 30px;
 }
-.swiper-slide {
-  background-color: beige;
-  background-position: center;
-  width: 125px;
+
+#mainSreen {
+  width: 250px;
   height: 30px;
+  background-color: aqua;
+}
+
+#bestChoice {
+  width: 390px;
+  height: 800px;
+  border-radius: 2.1875rem;
+  background-image: url(/assets/tunis/background_tunis-choose.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }

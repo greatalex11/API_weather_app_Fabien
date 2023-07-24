@@ -43,8 +43,8 @@ swiper.on("slideChange", function () {
 
 let monObjet2 = ["villex"];
 
-function villesDataList() {
-  fetch(`./json/city.list.json`)
+async function villesDataList() {
+  await fetch(`./json/city.list.json`)
     .then((response) => response.json())
     .then((response) => {
       let villesRamdomList = response;
@@ -89,15 +89,6 @@ function trippy() {
 
 let butonTrippy = document.getElementById("buttonTrippy");
 butonTrippy.addEventListener("click", trippy);
-/* PREPA SWIPER JS
-
-let divBlankWiki = document.getElementById("containerAdvisor");
-console.log(divBlankWiki);
-divBlankWiki.style.fontSize = "10px";
-divBlankWiki.style.width = "300px";
-divBlankWiki.style.height = "500px";
-divBlankWiki.innerHTML = reponseTrippy;
-*/
 
 /**
  *
@@ -156,12 +147,12 @@ function getMeteoObjByJson(myarray) {
  **/
 
 function getData() {
-  let ville = getVille();
+  let ville = getVille(); //input "ville choisie"//
   let latlon = getLatitudeLongitude(ville, "search");
 }
+
 let validateVille = document.querySelector("button");
 const searchVille = document.querySelector("input");
-
 validateVille.addEventListener("click", getData);
 
 /**
@@ -194,16 +185,17 @@ function getVille(ville) {
 function getVilleRandom(monObjet2) {
   let effet = getLatitudeLongitude(monObjet2, "random");
   affichageEffet(effet); //L241
-}
+} //monObjet2=nom ville random//
 
 let effetAffichage;
 function affichageEffet(city) {
   divVille = document.getElementById("ville");
   divVille.innerHTML = "";
+
   if (document.getElementById("typingDemo") == undefined) {
     monSpan = document.createElement("span");
     monSpan.id = "typingDemo";
-    console.log(city);
+    //console.log(city);
     divVille.append(monSpan);
   } else {
     monSpan = document.getElementById("typingDemo");
@@ -243,9 +235,9 @@ async function getLatitudeLongitude(ville, callType = "search") {
 
       meteo(latlon);
 
-      function meteo(latlon) {
+      async function meteo(latlon) {
         let city = "";
-        fetch(
+        await fetch(
           `http://api.openweathermap.org/data/2.5/forecast?lat=${latlon.latitude}&lon=${latlon.longitude}&appid=0ecf229967bee135b64207c0a18df389&units=metric`
         )
           .then((response) => response.json()) // convert to json//
@@ -263,30 +255,11 @@ async function getLatitudeLongitude(ville, callType = "search") {
 
             //console.log(country);//
 
-            /*                          AJOUT DE LA VILLE A LA LISTE DES FAVORIS                        */
-
-            let tableFavoris = new Array();
-
-            function favoris() {
-              let ListFavoris = {
-                ville: city,
-                country: country,
-                icone: sourceUrlGdeIcone,
-              };
-
-              tableFavoris.push(ListFavoris);
-              console.log(tableFavoris);
-              return tableFavoris;
-            }
-
-            let btnFavoris = document.getElementById("btnFavoris");
-            btnFavoris.addEventListener("click", favoris);
-            for (let favoList of tableFavoris) {
-              console.log(favoList);
-            }
-            console.log(tableFavoris);
-
-            /*                                  AFFICHAGE RESULAT METEO                                 */
+            /*
+             *                                AFFICHAGE RESULAT METEO
+             *
+             *
+             */
 
             if (callType == "search") {
               let cityLabel = document.querySelector("#ville");
@@ -323,6 +296,7 @@ async function getLatitudeLongitude(ville, callType = "search") {
               "mist",
               "moderate rain",
             ];
+
             let urlIcon = [
               "../assets/meteo/gd_soleil.png",
               "../assets/meteo/gd_clairci.png",
