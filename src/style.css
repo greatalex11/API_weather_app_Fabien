@@ -304,29 +304,29 @@
   display: flex;
   justify-content: center;
   background-color: transparent;
-  width: 380px;
-  height: 810px;
+  width: 390px;
+  height: 844px;
   text-align: center;
-}
-
-.swiper-slide {
-  background: transparent;
-  background-position: center;
-  width: 250px;
-  height: 30px;
+  margin-top: 50px;
 }
 
 #mainSreen {
-  width: 250px;
-  height: 10px;
+  width: 400px;
+  height: 850px;
   border: #be5298 solid 0.2rem;
 }
 
 #bestChoice {
-  width: 390px;
-  height: 800px;
+  width: 400px;
+  height: 844px;
   border-radius: 2.1875rem;
   background-image: url(/assets/tunis/background_tunis-choose.svg);
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0px 10px 0px 10px;
+}
+
+#screen {
+  display: flex;
+  width: 1000px;
 }

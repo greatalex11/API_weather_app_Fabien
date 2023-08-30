@@ -3,6 +3,9 @@
  *
  *
  **/
+let returnVille;
+
+
 const swiper = new Swiper(".swiper", {
   // Optional parameters
   direction: "horizontal",
@@ -35,37 +38,51 @@ swiper.on("slideChange", function () {
   console.log("slide changed");
 });
 
+
+let dateJourFavoris = new Date();
+let dateFavoris = dateJourFavoris.getDate();
+
+function recordRandom() {
+  let historiques = localStorage.getItem("favoris")||JSON.stringify([]);
+  historiques = JSON.parse(historiques);
+  if(returnVille == null)  
+    return false;
+  historiques.push(returnVille);
+  let historiques_string = JSON.stringify(historiques);
+  localStorage.setItem('favoris', historiques_string);
+}
+
+const favorisBtn = document
+  .querySelector("#infoLike")
+  .addEventListener("click", recordRandom);
+
 /**
  *                                          FETCH LISTE VILLES EN LOCAL / RANDOM
  *
  *
  **/
 
-let monObjet2 = ["villex"];
 
 async function villesDataList() {
-  await fetch(`./json/city.list.json`)
-    .then((response) => response.json())
-    .then((response) => {
-      let villesRamdomList = response;
-      let nbRandom = Math.round(Math.random() * (villesRamdomList.length - 1));
-      //console.log(nbRandom);//
-      let resultVilleRandom = villesRamdomList[nbRandom];
-      let nameCounrtyRandom = resultVilleRandom.name;
+  console.log("click sur random")
+  returnVille = await fetch(`./json/city.list.json`)
+  .then((response) => response.json())
+  .then((response) => {
+    console.log(response)
+    let villesRamdomList = response;
+    let resultVilleRandom = villesRamdomList[Math.floor(Math.random() * villesRamdomList.length)];
+    let villeName = resultVilleRandom.name;
 
-      //console.log(nameCounrtyRandom);//
-      monObjet2[0] = nameCounrtyRandom;
-      getVilleRandom(nameCounrtyRandom);
-    });
-
-  //return monObjet2[0];//
+    getVilleRandom(villeName);
+    return resultVilleRandom;
+  });
+  console.log(returnVille)
+  return returnVille;
 }
+console.log(returnVille)
 
 let btnRandom = document.getElementById("btnRandom");
 btnRandom.addEventListener("click", villesDataList);
-
-/*console.log(monObjet2[0]);
-console.log(btnRandom.value);*/
 
 /**
  *                                            FETCH TRIPADVISOR EN LOCAL
@@ -183,9 +200,9 @@ function getVille(ville) {
  **/
 
 function getVilleRandom(monObjet2) {
-  let effet = getLatitudeLongitude(monObjet2, "random");
-  affichageEffet(effet); //L241
-} //monObjet2=nom ville random//
+  getLatitudeLongitude(monObjet2, "random");
+  
+}
 
 let effetAffichage;
 function affichageEffet(city) {
@@ -210,13 +227,18 @@ function affichageEffet(city) {
  **/
 
 async function getLatitudeLongitude(ville, callType = "search") {
+  console.log(ville);
   await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${ville}&limit=5&appid=0ecf229967bee135b64207c0a18df389`
   )
     .then((response) => response.json()) // convert to json//
     /*.then((json) => console.log(json)) //print data to console// */
-    .then((response) => {
+    .then(async (response) => {
       i = 0;
+      console.log(response)
+      if(response.length === 0) {
+        return villesDataList();
+      }
       //for (let i = 0; i < response.length; i++) { qd je traiterai une liste de résultat//
       let latiVille = response[i].lat;
       let longiVille = response[i].lon;
@@ -233,7 +255,7 @@ async function getLatitudeLongitude(ville, callType = "search") {
        *
        **/
 
-      meteo(latlon);
+      await meteo(latlon);
 
       async function meteo(latlon) {
         let city = "";
@@ -398,10 +420,10 @@ async function getLatitudeLongitude(ville, callType = "search") {
 /*
   // And if we need scrollbar
   scrollbar: {
-    el: ".swiper-scrollbar",*/
+    el: ".swiper-scrollbar",
 
 //                                              IA    url grande icone                                 //
-/*
+
 let urlCorrespondant = null;
 
             for (let j = 0; j < assoUrlIcon.length; j++) {
@@ -415,4 +437,5 @@ let urlCorrespondant = null;
                 urlCorrespondant = url;
                 console.log(urlCorrespondant); // null !!
               }
-            } */
+            } 
+    */
